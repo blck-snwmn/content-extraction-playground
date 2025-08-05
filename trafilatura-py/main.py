@@ -2,8 +2,17 @@ def main():
     print("Hello from trafilatura-py!")
 
     from trafilatura import fetch_url, extract
+    import sys
 
-    downloaded = fetch_url('https://hololive.hololivepro.com/news/20250628-01-346')
+    if len(sys.argv) < 2:
+        print("Usage: uv run main.py <URL>")
+        sys.exit(1)
+    
+    url = sys.argv[1]
+    print(f"Extracting content from: {url}\n")
+    
+
+    downloaded = fetch_url(url)
 
     result = extract(downloaded)
     print(result)
