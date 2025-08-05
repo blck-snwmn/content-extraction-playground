@@ -1,5 +1,5 @@
 [project]
-name = "hello-readability-py"
+name = "readability-py"
 version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
