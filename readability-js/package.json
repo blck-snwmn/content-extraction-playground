@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "smoke": "node -e \"require('@mozilla/readability'); require('jsdom')\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
