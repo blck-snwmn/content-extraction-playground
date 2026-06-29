@@ -55,9 +55,17 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        project:
-          - readability-py
-          - trafilatura-py
+        include:
+          - project: readability-py
+            smoke-script: |
+              from readability import Document
+
+              Document("<html><title>x</title><body>hello</body></html>").summary()
+          - project: trafilatura-py
+            smoke-script: |
+              from trafilatura import extract
+
+              assert extract("<html><body>hello</body></html>")
     defaults:
       run:
         working-directory: ${{ matrix.project }}
@@ -79,8 +87,6 @@ jobs:
       - run: uv run python -m compileall main.py
 
       - run: |
-          if [ "${{ matrix.project }}" = "readability-py" ]; then
-            uv run python -c "from readability import Document; Document('<html><title>x</title><body>hello</body></html>').summary()"
-          else
-            uv run python -c "from trafilatura import extract; assert extract('<html><body>hello</body></html>')"
-          fi
+          uv run python <<'PY'
+          ${{ matrix.smoke-script }}
+          PY
