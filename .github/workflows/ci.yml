@@ -77,3 +77,11 @@ jobs:
       - run: uv sync --frozen
 
       - run: uv run python -m compileall main.py
+
+      - name: Run readability smoke
+        if: matrix.project == 'readability-py'
+        run: uv run python -c "from readability import Document; Document('<html><title>x</title><body>hello</body></html>').summary()"
+
+      - name: Run trafilatura smoke
+        if: matrix.project == 'trafilatura-py'
+        run: uv run python -c "from trafilatura import extract; assert extract('<html><body>hello</body></html>')"
