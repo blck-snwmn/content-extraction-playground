@@ -9,6 +9,7 @@ permissions:
 
 jobs:
   mdconv-cfwk:
+    name: mdconv-cfwk install, typegen, and test
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -31,6 +32,7 @@ jobs:
       - run: pnpm test -- --run
 
   readability-js:
+    name: readability-js install and smoke
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -51,6 +53,7 @@ jobs:
       - run: pnpm run smoke
 
   python:
+    name: python install and smoke (${{ matrix.project }})
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
