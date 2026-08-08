@@ -9,10 +9,10 @@ importers:
   .:
     dependencies:
       '@mozilla/readability':
-        specifier: ^0.6.0
+        specifier: 0.6.0
         version: 0.6.0
       jsdom:
-        specifier: ^30.0.0
+        specifier: 30.0.1
         version: 30.0.1
 
 packages:
